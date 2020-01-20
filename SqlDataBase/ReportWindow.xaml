@@ -1,0 +1,143 @@
+﻿<Controls:MetroWindow x:Class="SqlDataBase.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SqlDataBase"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        mc:Ignorable="d"
+        Title="ShowImageWindow" Height="450" Width="800" IsMinButtonEnabled="False" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid Name="GridShowImage" Visibility="Hidden">
+            <Image Name="ImageShowFull"/>
+            <Button Name="ButtonImageBack" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{DynamicResource TriangleButtonStyle}" Click="ButtonImageBack_Click"/>
+            <Button Name="ButtonImageNext" VerticalAlignment="Center" HorizontalAlignment="Right" Style="{DynamicResource TriangleButtonStyle}" Click="ButtonImageNext_Click" RenderTransformOrigin="0.5,0.5">
+                <Button.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="-1"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Button.RenderTransform>
+            </Button>
+            <Button x:Name="ButtonPrintImage" Content="Печать" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Margin="0,10,10,0" Click="ButtonPrintImage_Click" Focusable="False"/>
+        </Grid>
+        <Grid Name="GridShowReport" Visibility="Visible">
+            <Grid Name="GridReport" Margin="0,0,150,0">
+                <Grid Name="GridName" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="375" Margin="10,10,0,0" Visibility="Hidden">
+                    <Label Content="Имя:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="64,0,0,0"/>
+                    <TextBox Name="TextBoxName" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" Margin="105,0,0,0"/>
+                </Grid>
+                <Grid Name="GridSubname" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="375" Margin="10,10,0,0" Visibility="Hidden">
+                    <Label Content="Фамилия:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,0,0,0"/>
+                    <TextBox Name="TextBoxSubname" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" Margin="105,0,0,0"/>
+                </Grid>
+                <Grid Name="GridPatronymic" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="375" Margin="10,10,0,0" Visibility="Hidden">
+                    <Label Content="Отчество:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="37,0,0,0"/>
+                    <TextBox Name="TextBoxPatronymic" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" Margin="105,0,0,0"/>
+                </Grid>
+                <Grid Name="GridDateBirth" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="375" Margin="10,10,0,0" Visibility="Hidden">
+                    <Label Content="Дата рождения:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="3,0,0,0"/>
+                    <DatePicker Name="DatePickerDateBirth" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="105,0,0,0" Focusable="False" Width="268"/>
+                </Grid>
+                <Grid Name="GridLocation" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="375" Margin="10,10,0,0" Visibility="Hidden">
+                    <Label Content="Город:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="54,0,0,0"/>
+                    <TextBox Name="TextBoxLocation" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" Margin="105,0,0,0"/>
+                </Grid>
+                <Grid Name="GridGroupNameOrPlaceWork" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="375" Margin="10,10,0,0" Visibility="Hidden">
+                    <Label Name="LabelGroupNameOrPlaceWork" Content="Группа:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="49,0,0,0"/>
+                    <TextBox Name="TextBoxGroupNameOrPlaceWork" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" Margin="105,0,0,0"/>
+                </Grid>
+                <Grid Name="GridPhone" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="375" Margin="10,10,0,0" Visibility="Hidden">
+                    <Label Content="Телефон:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,0,0,0"/>
+                    <TextBox Name="TextBoxPhone" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" Margin="105,0,0,0"/>
+                </Grid>
+                <Grid Name="GridGender" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="375" Margin="10,10,0,0" Visibility="Hidden">
+                    <Label Content="Пол:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="65,0,0,0"/>
+                    <RadioButton Name="RadioButtonGenderMan" Content="Мужской" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="169,5,0,0"/>
+                    <RadioButton Name="RadioButtonGenderWoman" Content="Женский" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="249,5,0,0"/>
+                </Grid>
+                <Grid Name="GridAdditional" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="375" Margin="10,10,0,0" Visibility="Hidden">
+                    <Label Content="Дополнительно:" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
+                    <TextBox Name="TextBoxAdditional" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="268" Margin="105,0,0,0"/>
+                </Grid>
+                <Ellipse Name="EllipseAvatar" Width="250" Height="250" Margin="390,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="ImageAvatar" ImageSource="Resources/NoAvatar.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Grid>
+            <Grid Name="GridReportSettings" HorizontalAlignment="Right" Width="150">
+                <Button Name="ButtonGenerateReport" Content="Создать" HorizontalAlignment="Center" VerticalAlignment="Top" Width="75" Margin="0,10,0,0" Click="ButtonGenerateReport_Click"/>
+                <RadioButton Name="RadioButtonStudent" Content="Студент" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,42,0,0" IsChecked="True"/>
+                <RadioButton Name="RadioButtonDad" Content="Отец" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,65,0,0" Checked="RadioButtonDad_Checked"/>
+                <RadioButton Name="RadioButtonMom" Content="Мать" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="38,88,0,0" Checked="RadioButtonMom_Checked"/>
+                <Grid Margin="0,111,0,0">
+                    <CheckBox Name="CheckBoxName" Content="Имя" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Click="CheckBoxName_Click"/>
+                    <CheckBox Name="CheckBoxSubname" Content="Фамилия" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,33,0,0" Click="CheckBoxSubname_Click"/>
+                    <CheckBox Name="CheckBoxPatronymic"  Content="Отчество" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,56,0,0" Click="CheckBoxPatronymic_Click"/>
+                    <CheckBox Name="CheckBoxDateBirth" Content="Дата рождения" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,79,0,0" Click="CheckBoxDateBirth_Click"/>
+                    <CheckBox Name="CheckBoxLocation" Content="Город" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,102,0,0" Click="CheckBoxLocation_Click"/>
+                    <CheckBox Name="CheckBoxGroupNameOrPlaceWork" Content="Группа" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,125,0,0" Click="CheckBoxGroupNameOrPlaceWork_Click"/>
+                    <CheckBox Name="CheckBoxPhone" Content="Телефон" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,148,0,0" Click="CheckBoxPhone_Click"/>
+                    <CheckBox Name="CheckBoxGender" Content="Пол" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,171,0,0" Click="CheckBoxGender_Click"/>
+                    <CheckBox Name="CheckBoxAdditional" Content="Дополнительно" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,194,0,0" Click="CheckBoxAdditional_Click"/>
+                    <CheckBox Visibility="Hidden" Name="CheckBoxPhoto" Content="Фото" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,217,0,0" Click="CheckBoxPhoto_Click"/>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+    <Window.Resources>
+        <StreamGeometry x:Key="Geometry">M12,24 L36,0 L36,48 Z</StreamGeometry>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Path Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2" Data="{StaticResource Geometry}" Width="48"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <Style x:Key="TriangleButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Path Name="border" Stroke="{TemplateBinding BorderBrush}" Fill="{TemplateBinding Background}" Data="{StaticResource Geometry}" Width="48"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="Stroke" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Fill" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="Stroke" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Fill" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="Stroke" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Fill" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="Stroke" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <RotateTransform x:Key="Rotate090" CenterX="24" CenterY="24" Angle="090"/>
+        <RotateTransform x:Key="Rotate180" CenterX="24" CenterY="24" Angle="180"/>
+        <RotateTransform x:Key="Rotate270" CenterX="24" CenterY="24" Angle="270"/>
+    </Window.Resources>
+</Controls:MetroWindow>
